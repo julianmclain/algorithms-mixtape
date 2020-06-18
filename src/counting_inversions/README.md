@@ -20,24 +20,27 @@ There are 3 types of inversions
 - Right inversion: when `i, j > n/2` 
 - Split inversion: when `i <= n/2 < j`
 
-** `n` = the array length
+where `n` = the array length
 
-## Approach
+## Implementation 
 
-**Input**: An array containing the numbers 1 through `n` in an arbitrary order.
+### Input
 
-**Output**: The number of inversions of the array. 
+An array containing the numbers 1 through `n` in an arbitrary order.
 
-A naive approach is to use brute-force to solve.
+### Output
 
-**Brute-force Pseudocode**:
-count(A: array) -> inversion_count
+The number of inversions of the array. 
+
+### Description 
+
+A naive approach is to use brute-force to solve:
 1. If `n = 1`, return 0
 2. Loop through all indices `i`
 3. For each index `i`, Loop through indicies `j` (each index bigger than `i`)
 4. If `A[i] > A[j]`, count an inversion
 
-This has a runtime of `O(n<super>2</super>)`... not great :(
+This has a runtime of *O(n<sup>2</sup>)*... not great :(
 
 A better approach is to use the Divide and Conquer Paradigm. If you split the
 array in half, you can recusively compute the left and right inversions. Then
@@ -47,7 +50,7 @@ The key to making this approach work is to see that counting inversions
 intersects directly with sorting. Remember that an inversion is essentially
 just an element that's "out of order."
 
-**Divide and Conquer Pseudocode**:
+The Divide and Conquer approach:
 1. If `n = 1`, return the array unmodified and 0.
 2. B, x = recursive call with the first half of the array. Returns a sorted array and the number of inversions.
 3. C, y = recursive call with the left half of the array. Returns a sorted array and the number of inversions.

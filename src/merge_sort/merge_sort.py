@@ -1,10 +1,3 @@
-
-def main():
-    input = [5, 10, 11, 4, 1, 8, 7, 2, 6, 3, 9]
-    sorted = merge_sort(input)
-    print(sorted)
-
-
 def merge_sort(num_list):
     """Sort a list of numbers using the MergeSort algorithm.
 
@@ -66,7 +59,3 @@ def merge(l, r):
     sorted_list.extend(l[index_l:])
     sorted_list.extend(r[index_r:])
     return sorted_list
-
-
-if __name__ == '__main__':
-    main()

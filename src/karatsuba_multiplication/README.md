@@ -2,13 +2,17 @@
 
 The Karatsuba Multiplication algorithm was discovered by Anatoly Karatsuba in 1960 and published in 1962. It's an optimization of recursive multiplication.
 
-## Approach
+## Implementation 
 
-**Input**: two n-digit positive integers `x`, and `y`
+### Input
 
-**Output**: the product of `x` and `y`
+Two n-digit positive integers *x*, and `y`
 
-**Pseudocode**:
+### Output
+
+The product of `x` and `y`
+
+### Description 
 1. If both operands are single digit numbers, compute and return the product
 2. Split the first operand into two halves, `a` and `b`
 3. Split the second operand into two halves, `c` and `d`
