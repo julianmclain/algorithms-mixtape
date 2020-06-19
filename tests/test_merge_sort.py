@@ -8,9 +8,9 @@ class TestMergeSort(unittest.TestCase):
         """
         Test merge_sort on a small input array
         """
-        input = [5, 10, 11, 4, 1, 8, 7, 2, 6, 3, 9]
+        test_data = [5, 10, 11, 4, 1, 8, 7, 2, 6, 3, 9]
         expected = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-        sorted = merge_sort(input)
+        sorted = merge_sort(test_data)
         self.assertEqual(expected, sorted)
 
 

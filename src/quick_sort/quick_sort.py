@@ -13,18 +13,18 @@ def quick_sort(input_list):
     _quick_sort(input_list, 0, len(input_list) - 1)
 
 
-def _quick_sort(input_list, left, right):
-    if left >= right:
+def _quick_sort(input_list, left_index, right_index):
+    if left_index >= right_index:
         return
     else:
-        i = _choose_pivot(input_list, left, right)
+        i = _choose_pivot(input_list, left_index, right_index)
         pivot_element = input_list[i]
-        input_list[i] = input_list[left]
-        input_list[left] = pivot_element
+        input_list[i] = input_list[left_index]
+        input_list[left_index] = pivot_element
 
-        j = _partition(input_list, left, right)
-        _quick_sort(input_list, left, j - 1)
-        _quick_sort(input_list, j + 1, right)
+        j = _partition(input_list, left_index, right_index)
+        _quick_sort(input_list, left_index, j - 1)
+        _quick_sort(input_list, j + 1, right_index)
 
 
 def _choose_pivot(input_list, left, right):
