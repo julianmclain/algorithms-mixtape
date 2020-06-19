@@ -4,7 +4,7 @@ from src.merge_sort.merge_sort import merge_sort
 
 class TestMergeSort(unittest.TestCase):
 
-    def test_merge_sort_small(self):
+    def test_small(self):
         """
         Test merge_sort on a small input array
         """

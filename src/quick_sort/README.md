@@ -15,7 +15,7 @@ operate on arrays containing duplicate elements. My implmentation only operates
 on arrays of distinct elements because handling ties correctly and efficiently
 is tricky. 
 
-### Output
+### Postcondition
 
 The original input array containing the same elements, sorted from smallest to
 largest.
