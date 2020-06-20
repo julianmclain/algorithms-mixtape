@@ -1,4 +1,4 @@
-def merge_sort(num_list):
+def mergesort(num_list):
     """Sort a list of numbers using the MergeSort algorithm.
 
     Parameters
@@ -17,8 +17,8 @@ def merge_sort(num_list):
 
     # Recursive case
     split = len(num_list) // 2
-    left = merge_sort(num_list[:split])
-    right = merge_sort(num_list[split:])
+    left = mergesort(num_list[:split])
+    right = mergesort(num_list[split:])
     return merge(left, right)
 
 
@@ -37,11 +37,13 @@ def merge(l, r):
 
     Notes
     -----
-    After doing some research, I found a way to improve my original implementation. The
-    max number of iterations required in a "worst-case-scneario" can be decreased with the
-    following optimization. After reaching end of one of the list, immediately add the
-    remaining elements of both lists to the end of the output list. One will be empty,
-    the other will contain between 0 and all of its elements.
+    After doing some research, I found a way to improve my original
+    implementation. The max number of iterations required in a
+    "worst-case-scneario" can be decreased with the following optimization.
+    After reaching the end of either list, immediately add the remaining elements
+    of both lists to the end of the output list. One will be empty, the other
+    will contain only elements greater than the elements currently in the output
+    list.
 
     Reference: https://www.cs.cmu.edu/~15110-n15/lectures/unit05-3-MergeSort.pdf
     """

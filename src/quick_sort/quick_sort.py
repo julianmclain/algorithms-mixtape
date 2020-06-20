@@ -9,6 +9,7 @@ def quick_sort(input_list):
     Parameters
     ----------
     input_list : list
+        A list of distinct integers
     """
     _quick_sort(input_list, 0, len(input_list) - 1)
 
