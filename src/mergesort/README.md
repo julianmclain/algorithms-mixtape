@@ -121,7 +121,7 @@ Equipped with this info, we know that number of levels in the recursion tree is
 log<sub>2</sub> *n*. Let's return to our original forumla and fill in the *total
 work per level* and the *number of levels*.
 
-> *Total work* = *n* * log<sub>2</sub> *n*
+> *Total work* = *O*(*n*) * log<sub>2</sub> *n*
 
 Logarithms of a different base differ by a constant factor so we can eliminate
 the base: O(*n* log *n*). There it is! The Master Method holds up, and we have an
