@@ -16,13 +16,13 @@ an array of *n* elements.
 A new array with the same elements, sorted from smallest to largest.
 
 ### Description:
-Main function `mergesort(array)`
+`mergesort(array)` subroutine
 - If the array has length 1 or less, return a copy. It's already sorted.
 - Recursively sort the first half of the input array.
 - Recursively sort the second half of the input array.
 - Merge the two sorted sub-arrays into one sorted array.
 
-Subroutine `merge(left, right)`
+`merge(left, right)` subroutine 
 - Create an output array of length `left` + `right`
 - Store a pointer to the first element in left `i`
 - Store a pointer to the first element in right `j`

@@ -10,7 +10,6 @@ def mergesort(num_list):
     list
         A new list containing the same elements in sorted order.
     """
-
     # Base case
     if len(num_list) <= 1:
         return num_list[:]  # Return a new list with the same elements
@@ -19,10 +18,10 @@ def mergesort(num_list):
     split = len(num_list) // 2
     left = mergesort(num_list[:split])
     right = mergesort(num_list[split:])
-    return merge(left, right)
+    return _merge(left, right)
 
 
-def merge(l, r):
+def _merge(l, r):
     """Merge two sorted lists into a single sorted list.
 
     Parameters
@@ -32,7 +31,7 @@ def merge(l, r):
 
     Returns
     -------
-    list
+    sorted_list
         A new list containing all of the elments from l and r in sorted order.
 
     Notes
