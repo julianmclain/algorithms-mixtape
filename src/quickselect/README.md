@@ -24,7 +24,7 @@ side-effect of partially sorting the input data.
 
 ### Input
 
-An array of *n* >= 1 elements in arbitrary order and an integer *k* between 1 and *n* (inclusive).
+An array of *n* >= 1 elements in any order and an integer *k* between 1 and *n* (inclusive).
 
 ### Output
 
@@ -43,3 +43,42 @@ The *kth* smallest element of the array.
 ## Analysis
 
 ### Asymptotic runtime
+
+The runtime analysis of Quickselect is very similar to Quicksort. This should
+make sense since Quickselect is basically a partial application of the Quicksort
+algorithm.
+
+Like Quicksort, the runtime of Quickselect hinges completely on the quality of
+the pivot chosen. Also like Quicksort, it's fair to assume that a pivot chosen
+uniformly at random will produce an "approximate median" on average. Using an
+approximate median pivot, the input array will be split into 2 sub-arrays
+of roughly *n/2* length. Then a recursive call is made with whichever sub-array
+contains the *kth* element (ignoring the lucky case where the pivot is the *kth*
+element).
+
+This design is well-suited for the [Master
+Method](https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms))
+since it recurses on a sub-problem that's reduced by a constant factor. The
+Master Method states that the runtine of a divide-and-conquer algorithm denoted
+*T(n)* can be expressed by the recurrence relation:
+
+> *T*(*n*) <= *aT*(*n*/*b*) + *O*(*n*<sup>*d*</sup>)
+
+Where *a* is the number of recrusive calls, *b* is the factor by which the input
+size shrinks in every subproblem, and *d* is the exponent in the running time of
+the "combine" step.
+
+For Quickselect, we fill in the following constants:
+- *a* = 1
+- *b* = 2
+- *d* = 1 
+
+This puts quicksort's runtime in category 2 of 3 since *a* < *b<sup>d</sup>*.
+Category 2 run times are defined as *T*(*n*) = *O*(*n*<sup>*d*</sup>).
+Filling in the *d* parameter, we end up with a run time of:
+
+> *O*(*n*)
+
+Note that this is an *average* runtime because pivots are chosen randomly. It's
+highly unlikely but possible that the randomly chosen pivot always produces a
+subproblem of *n* - 1 length. In that case, the runtime would be quadratic. 
