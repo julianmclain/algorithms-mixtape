@@ -34,15 +34,16 @@ This one was tricky to implement for 2 reasons:
   1. On first glance, the operations seem completely random. It was tough to
      develop an intuition for how the algorithm solves the problem.
   2. It took me a while to figure out the best way to split the operands in
-     half. I ended up left padding one operand with 0s if it has less digits than
-     the other. Floor dividing each input by 10 to the power nby2 achieves this.
+     half. I ended up left padding one operand with 0s if it has less digits
+     than the other. Floor dividing each input by 10 to the power nby2 achieves
+     this.
 
 Does the additional complexity pay off? How much better is Karatsuba's algorithm
 than straight-forward recursive multiplication?
 
 Intuitively, we have to believe that the answer is yes. Karatsuba shaves a full
-recursive call off the traditional algorithm. Is it possible to quantify how much
-faster it is?
+recursive call off the traditional algorithm. Is it possible to quantify how
+much faster it is?
 
 ### Asymptotic runtime
 
@@ -50,9 +51,9 @@ Let's compare standard recursive multiplication with Karatsuba multiplication.
 
 #### Recursive multiplication
 
-There are 4 recursive calls, the operands have half as many digits in each
-recursive call, and outside the recusrive calls the additions and padding with
-0s can be done in linear time.
+There are 4 recursive calls, in each recursive call the operands have half as
+many digits, and outside the recusrive calls the additions and padding with 0s
+can be done in linear time.
 
 The [Master
 Method](https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms))
@@ -70,9 +71,9 @@ For standard recursive multiplication, we fill in the following parameters:
 - *b* = 2
 - *d* = 1
 
-This puts the runtime in category 3 of 3 since *a* > *b<sup>d</sup>*. Category 3 run
-times are defined as *T*(*n*) = *O*(*n*<sup>log<sub>*b*</sub>*a*</sup>). Filling in the
-parameters, we end up with a runtime of:
+This puts the runtime in category 3 since *a* > *b<sup>d</sup>*. Category 3
+run times are defined as *T*(*n*) = *O*(*n*<sup>log<sub>*b*</sub>*a*</sup>).
+Filling in the parameters, we end up with a runtime of:
 
 > *O*(*n*<sup>log<sub>2</sub>4</sup>) which simplifies to *O*(*n*<sup>2</sup>)
 
@@ -90,10 +91,11 @@ Again, using the Master Method, we fill in the following parameters:
 - *b* = 2
 - *d* = 1
 
-This also puts the runtime in category 3 of 3 since *a* > *b<sup>d</sup>*. Category 3 run
-times are defined as *T*(*n*) = *O*(*n*<sup>log<sub>*b*</sub>*a*</sup>). Filling in the
-parameters, we end up with a runtime of:
+This also puts the runtime in category 3 since *a* > *b<sup>d</sup>*.
+Category 3 run times are defined as *T*(*n*) =
+*O*(*n*<sup>log<sub>*b*</sub>*a*</sup>). Filling in the parameters, we end up
+with a runtime of:
 
 > *O*(*n*<sup>log<sub>2</sub>3</sup>) or approximately *O*(*n*<sup>1.59</sup>)
 
-There's the quantitative proof, it's a significant improvement for lage input sizes.
+A nice improvement for large inputs!

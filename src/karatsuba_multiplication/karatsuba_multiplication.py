@@ -19,8 +19,8 @@ def k_multiply(x, y):
     Notes
     -----
     When splitting the inputs, if one operand has less digits then you need to
-    left pad it with 0s to make the number of digits equal. Floor dividing
-    the input by 10 to the power nby2 achieves this.
+    left pad it with 0s to make the number of digits equal. Floor dividing the
+    input by 10 to the power nby2 achieves this.
 
     nby2 represents the approximate middle point. If n is odd, nby2 == (n / 2) - 1
     """
@@ -47,11 +47,12 @@ def k_multiply(x, y):
 
 
 def num_digits(num):
-    """Produce the number of digits in a non-negative integer.
+    """Produce the number of digits in a positive integer.
 
     Parameters
     ----------
     num : int
+        Must be a positive integer.
 
     Returns
     -------
@@ -68,7 +69,7 @@ def num_digits(num):
     """
     if num == 0:
         return 1
-    if num <= 999999999999997:
+    elif num <= 999999999999997:
         return int(math.log10(num)) + 1
     else:
         counter = 15
