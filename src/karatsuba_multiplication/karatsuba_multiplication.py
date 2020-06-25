@@ -1,22 +1,7 @@
 import math
 
 
-def main():
-    x = 3141592653589793238462643383279502884197169399375105820974944592
-    y = 2718281828459045235360287471352662497757247093699959574966967627
-    result = karatsuba(x, y)
-    assert x * y == result
-    print(f'{x} times {y} is {result}')
-
-    # Test num_digits
-    assert num_digits(0) == 1
-    assert num_digits(123) == 3
-    assert num_digits(1234) == 4
-    assert num_digits(
-        3141592653589793238462643383279502884197169399375105820974944592) == 64
-
-
-def karatsuba(x, y):
+def k_multiply(x, y):
     """Calculate the product of 2 integers using Karatsuba Multiplication.
 
     This implementation assumes that only single digit multiplication can be used.
@@ -34,8 +19,8 @@ def karatsuba(x, y):
     Notes
     -----
     When splitting the inputs, if one operand has less digits then you need to
-    left pad it with 0s to make the number of digits equal. Floor dividing the
-    input by 10 to the power nby2 achieves this.
+    left pad it with 0s to make the number of digits equal. Floor dividing
+    the input by 10 to the power nby2 achieves this.
 
     nby2 represents the approximate middle point. If n is odd, nby2 == (n / 2) - 1
     """
@@ -51,10 +36,10 @@ def karatsuba(x, y):
     c = y // 10**(nby2)
     d = y % 10**(nby2)
 
-    ac = karatsuba(a, c)
-    bd = karatsuba(b, d)
+    ac = k_multiply(a, c)
+    bd = k_multiply(b, d)
 
-    ab_plus_bc = karatsuba(a+b, c+d) - ac - bd
+    ab_plus_bc = k_multiply(a+b, c+d) - ac - bd
 
     product = 10**(2*nby2) * ac + (10**nby2 * ab_plus_bc) + bd
 
@@ -90,7 +75,3 @@ def num_digits(num):
         while num >= 10**counter:
             counter += 1
         return counter
-
-
-if __name__ == '__main__':
-    main()

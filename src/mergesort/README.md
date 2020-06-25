@@ -37,7 +37,8 @@ A new array with the same elements, sorted from smallest to largest.
 ## Analysis
 
 mergesort is a canonical "divide-and-conquer" algorithm. It splits the input
-array into two sub-problems, recursively solves each sub-problem, and then combines the solutions to the sub-problems.
+array into two sub-problems, recursively solves each sub-problem, and then
+combines the solutions to the sub-problems.
 
 ### Asymptotic run time
 
@@ -52,12 +53,12 @@ Where *a* is the number of recrusive calls, *b* is the factor by which the input
 size shrinks in every subproblem, and *d* is the exponent in the running time of
 the "combine" step.
 
-For mergesort, we fill in the following constants:
+For mergesort, we fill in the following parameters:
 - *a* = 2
 - *b* = 2
 - *d* = 1
 
-This puts the run time in category 1 of 3 since *a* = *b<sup>d</sup>*. Category 3 run
+This puts the run time in category 1 of 3 since *a* = *b<sup>d</sup>*. Category 1 run
 times are defined as *T*(*n*) = *O*(*n*<sup>*d*</sup> log *n*). Filling in the
 *d* parameter, we end up with a run time of:
 
