@@ -8,14 +8,14 @@ to solving this problem is to first sort the array in *O*(*n* log *n*) time and
 then access the *kth* element. This isn't an effective approach (hint: we can do
 better than *O*(*n* log *n*) runtime), but it's important to note because it
 demonstrates that the problem of selection can be *reduced* to sorting.
-Reduction enables you to solve new problems using known solutions to similar
-problems. It's an important concept in computer science.
+Reduction is the process of solving a problem by *reducing* it to a similar
+problem with a known solution. It's an important concept in computer science.
 
 Quickselect starts with the same approach as Quicksort. It chooses a pivot
 element and partitions the data around the pivot. However, instead of recursing
-on the elements smaller and larger than the pivot, Quickselect only needs to recurse on the half of the data
-containing the *kth* element. By ignoring the unnecessary elements, it achieves
-better performance than Quicksort.
+on the elements smaller and larger than the pivot, Quickselect only needs to
+recurse on the half of the data containing the *kth* element. By ignoring the
+unnecessary elements, it achieves better performance than Quicksort.
 
 Quickselect is usually implemented with in-place operations, so it has the
 side-effect of partially sorting the input data.
