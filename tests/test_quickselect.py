@@ -1,5 +1,5 @@
 import unittest
-import pathlib
+from pathlib import Path
 from src.quickselect.quickselect import quickselect
 
 
@@ -12,7 +12,7 @@ class TestQuickSelect(unittest.TestCase):
         self.assertEqual(k, result)
 
     def test_large(self):
-        path = pathlib.Path.cwd() / 'tests/fixtures/1_to_10000_distinct_unordered.txt'
+        path = Path(__file__).resolve().parents[0] / 'fixtures/1_to_10000_distinct_unordered.txt'
         with open(path, mode='r') as file:
             test_data = [int(line) for line in file]
         k = 2222
