@@ -60,3 +60,33 @@ For adjacency lists, there are the following ingredients:
 
 Think about the space requirements for adjacency lists. It's equal to Θ(*n* +
 *m*). For this reason, adjacency matrices are better suited to sparce graphs.
+
+
+## Graph Search
+
+Applications of graph search:
+- Examining connectivity - Physical networks like phone networks and highway
+  networks are intuitively well suited to graphs. Non-physical networks like
+  social networks, are equally applicable.
+- Formulating a plan for accomplishing a goal - In a more abstract sense,
+  formulating a plan can be represented as a graph where each node is a decision
+  point that leads to another decision point. As a result, graphs are ubiquitous
+  in AI (e.g. A robot formulating a plan on how to pickup a package).
+- Computing the "pieces" (or "components") of a graph. This is useful for
+  clustering or determining the structure of a graph.
+
+Goal:
+- Given a starting vertex, traverse every findable vertex in the graph.
+- Don't visit any vertex more than once.
+- Do it in *O*(*m* + *n*) time
+
+Here's a generic formulation of the graph search solution. Imagine there's a
+graph and you divide it into two sets, the vertices that have already been
+explored, and the vertices that haven't been visited. While there are vertices
+that have one endpoint in the explored territory and one endpoint in the
+unexplored territory, the algorithm will choose one of such edges and follow it
+to the endpoint in the unexplored territory. Once there are no such edges, it
+terminates.
+
+From this generic formulation, different graph search algorithms emerge based on
+how the next edge to explore is chosen.

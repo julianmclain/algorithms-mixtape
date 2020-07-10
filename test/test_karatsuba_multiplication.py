@@ -1,5 +1,5 @@
 import unittest
-from src.karatsuba_multiplication.karatsuba_multiplication import k_multiply
+from algorithms_mixtape.karatsuba_multiplication.karatsuba_multiplication import k_multiply
 
 
 class TestKaratsubaMultiplication(unittest.TestCase):

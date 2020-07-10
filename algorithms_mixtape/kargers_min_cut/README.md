@@ -72,8 +72,12 @@ repeated trials can solve certain problems with a high-degree of confidence. The
 runtime, on the other hand, isn't that impresive. It's at least better than
 deterministic brute-force search which would run in *O*(2<sup>n</sup>).
 
-We can pretty easily come up with a rough lower-bound on the runtime. For an almost certain correct solution, it needs to run *n*<sup>2</sup> ln *n* trials. Each trial has to contract *m* - 2 edges, so there's a factor of *m*. Dropping the non-dominant ln *n* term, we end up with:
+We can pretty easily come up with a rough lower-bound on the runtime. For an
+almost certain correct solution, it needs to run *n*<sup>2</sup> ln *n* trials.
+Each trial has to contract *m* - 2 edges, so there's a factor of *m*. Dropping
+the non-dominant ln *n* term, we end up with:
 
 > Ω(*n*<sup>2</sup> *m*)
 
-Computer scientists have built on this foundation and d
+David Karger later improved this basic form of the algorithm to achieve an order
+of magnitude better performance.

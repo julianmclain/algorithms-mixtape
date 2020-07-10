@@ -1,6 +1,6 @@
 import unittest
 from pathlib import Path
-from src.quicksort.quicksort import quicksort
+from algorithms_mixtape.quicksort.quicksort import quicksort
 
 
 class TestQuickSort(unittest.TestCase):
@@ -12,7 +12,8 @@ class TestQuickSort(unittest.TestCase):
         self.assertEqual(expected, test_data)
 
     def test_large(self):
-        path = Path(__file__).resolve().parents[0] / 'fixtures/1_to_10000_distinct_unordered.txt'
+        path = Path(__file__).resolve(
+        ).parents[0] / 'fixtures/1_to_10000_distinct_unordered.txt'
         expected = list(range(1, 10000 + 1))
         with open(path, mode='r') as file:
             test_data = [int(line) for line in file]

@@ -1,26 +1,28 @@
 # Counting Inversions of an Array
 
-An inversion of an array is a pair of elements that are "out of order," meaning
-that an element that occurs earlier in the array is bigger than one that
-occurs later. Mathematically, that is to say that an inversion is a pair of 
-array indicies `(i, j)` such that `i < j` and `A[i] > A[j]`.
+An inversion of an array is a pair of elements that are "out of order." The
+first element of the pair is bigger than the second element, yet it occurs
+earlier in the array (assuming ascending sort order). Using some notation, we
+can express an inversion as a pair of array indicies `(i, j)` such that `i < j`
+and `A[i] > A[j]`.
 
-Inversions can be used to objectively measure the similarity of 2 ranked lists.
-For example, imagine you rank your 10 favorite movies. You then ask your friend
-to take your 10 favorite movies and provide their own rank list. If your friend
-ranks the same movies 1 - 10, there will be no inversions. If he / she provides the
-exact opposite rankings (i.e. 1 become 10, 9 becomes 2, etc...), there will be
-10 choose 2 inversions (the maximum possible).
-
-The concept of generating a measure of similarity between rankings is core to
-*collaborative filtering*, a technique used to make recommendations.
-
-There are 3 types of inversions
+Using the notation above, we can define 3 types of inversions:
 - Left inversion: when `i, j <= n/2`
 - Right inversion: when `i, j > n/2` 
 - Split inversion: when `i <= n/2 < j`
 
-where `n` = the array length
+**`n` = the array length
+
+In practice, inversions can be used to measure the similarity of 2 ranked lists.
+For example, imagine you rank your 10 favorite movies. Then you ask your friend
+to take those same 10 favorite movies and provide her own rank list. If your
+friend ranks the same movies 1 - 10, there will be no inversions. If she
+provides the exact opposite rankings (i.e. 1 becomes 10, 9 becomes 2, etc...),
+there will be 10 choose 2 inversions (the maximum possible).
+
+The concept of generating a measure of similarity between ranked lists is core to
+*collaborative filtering*, a technique used to make recommendations.
+
 
 ## Implementation 
 
@@ -37,10 +39,10 @@ The number of inversions of the array.
 A naive approach is to use brute-force to solve:
 1. If `n = 1`, return 0
 2. Loop through all indices `i`
-3. For each index `i`, Loop through indicies `j` (each index bigger than `i`)
+3. For each index `i`, Loop through all `j` indices bigger than `i`
 4. If `A[i] > A[j]`, count an inversion
 
-This has a runtime of *O(n<sup>2</sup>)*... not great :(
+This has a runtime of *O(n<sup>2</sup>)*... not great!
 
 A better approach is to use the Divide and Conquer Paradigm. If you split the
 array in half, you can recusively compute the left and right inversions. Then
@@ -51,7 +53,7 @@ intersects directly with sorting. Remember that an inversion is essentially
 just an element that's "out of order."
 
 The Divide and Conquer approach:
-1. If `n = 1`, return the array unmodified and 0.
+1. If `n = 1`, return 0
 2. B, x = recursive call with the first half of the array. Returns a sorted array and the number of inversions.
 3. C, y = recursive call with the left half of the array. Returns a sorted array and the number of inversions.
 4. D, z = merge x and y while counting all split inversions. If you have a sorted left array, B, and a sorted right array, C, then you have a split inversion any time you copy an element from C into the output array while B is not empty. More specifically, if you have indicies `i` of `B` and `j` of `C`, then the number of inversions created when `C[j]` is copied to the output array is equal to the number of remaining elements in `B`. This is because B is already sorted. If `C[j]` is less than `B[i]`, it must also be less than every element after `B[i]`.
