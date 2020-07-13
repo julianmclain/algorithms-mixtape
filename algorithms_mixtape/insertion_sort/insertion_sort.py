@@ -17,7 +17,7 @@ def insertion_sort(arr):
         return
 
     for i, num in enumerate(arr[1:], 1):
-        while i > 0 and num < arr[i-1]:
-            arr[i] = arr[i-1]
-            arr[i-1] = num
+        while i > 0 and num < arr[i - 1]:
+            arr[i] = arr[i - 1]
+            arr[i - 1] = num
             i -= 1

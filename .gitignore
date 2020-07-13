@@ -3,3 +3,5 @@ default.profraw
 .DS_Store
 __pycache__/
 .idea/
+*.egg
+*.egg-info/

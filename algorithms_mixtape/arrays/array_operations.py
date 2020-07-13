@@ -46,15 +46,15 @@ def duplicate_element(arr, val):
     """
     arr_length = len(arr)
     for i in reversed(range(arr_length)):
-        if arr[i] == val and i != arr_length-1:
-            prev = arr[i+1]
-            for j in range(i+2, arr_length):
+        if arr[i] == val and i != arr_length - 1:
+            prev = arr[i + 1]
+            for j in range(i + 2, arr_length):
                 if j >= arr_length:
                     break
                 tmp = arr[j]
                 arr[j] = prev
                 prev = tmp
-            arr[i+1] = val
+            arr[i + 1] = val
 
 
 def remove_duplicates(nums) -> int:

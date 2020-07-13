@@ -54,13 +54,14 @@ just an element that's "out of order."
 
 The Divide and Conquer approach:
 - Have the function return the number of inversion *AND* the sorted array. That
-  way, the `merge` function will receive 2 sorted lists.
+  way, the `merge` function will receive 2 sorted arrays.
 
 `count_inversions(A: array) -> array, int`
 1. If `n = 1`, return 0
 2. *B*, *x* = make a recursive call with the first half of the array.
 3. *C*, *y* = make recursive call with the left half of the array.
 4. *D*, *z* = merge *B* and *C* while counting all split inversions. 
+5. Return x + y + z
 
 
 `merge(B: array, C: array) -> array, int`
@@ -70,9 +71,10 @@ time an element in *C* is less than an element in *B*. The exact number of split
 inversions depends on the number of elements still in *B*.
 
 For example, let *n* equal the length of *C*. If `C[j] < B[i]`, then the number
-of split inversions equals `n - j`.
+of split inversions equals `n - i`.
 
-See [mergesort](/algorithms_mixtape/mergesort) for a full description of merging 2 sorted arrays.
+See [mergesort](/algorithms_mixtape/mergesort) for a full description of merging
+2 sorted arrays.
 
 ## Analysis
 

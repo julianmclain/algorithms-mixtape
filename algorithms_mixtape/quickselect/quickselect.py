@@ -31,9 +31,9 @@ def select(lst, l, r, index):
     if j == index:
         return lst[j]
     elif j > index:
-        return select(lst, l, j-1, index)
+        return select(lst, l, j - 1, index)
     else:
-        return select(lst, j+1, r, index)
+        return select(lst, j + 1, r, index)
 
 
 def _choose_pivot(l, r):
@@ -44,8 +44,7 @@ def _partition(items_list, l, r):
     # Assume first element is the pivot
     pivot = items_list[l]
     index_after_pivot = l + 1
-    for cur, num in enumerate(items_list[index_after_pivot:r+1],
-                              index_after_pivot):
+    for cur, num in enumerate(items_list[index_after_pivot : r + 1], index_after_pivot):
         if num < pivot:
             items_list[cur] = items_list[index_after_pivot]
             items_list[index_after_pivot] = num

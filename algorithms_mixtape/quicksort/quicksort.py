@@ -39,7 +39,7 @@ def _choose_pivot(input_list, left, right):
 def _partition(input_list, left, right):
     pivot = input_list[left]
     index_after_pivot = left + 1
-    for cur, num in enumerate(input_list[left + 1:right + 1], left + 1):
+    for cur, num in enumerate(input_list[left + 1 : right + 1], left + 1):
         if num < pivot:
             input_list[cur] = input_list[index_after_pivot]
             input_list[index_after_pivot] = num

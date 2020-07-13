@@ -31,17 +31,17 @@ def k_multiply(x, y):
     n = max(num_digits(x), num_digits(y))
     nby2 = n // 2
 
-    a = x // 10**(nby2)
-    b = x % 10**(nby2)
-    c = y // 10**(nby2)
-    d = y % 10**(nby2)
+    a = x // 10 ** (nby2)
+    b = x % 10 ** (nby2)
+    c = y // 10 ** (nby2)
+    d = y % 10 ** (nby2)
 
     ac = k_multiply(a, c)
     bd = k_multiply(b, d)
 
-    ab_plus_bc = k_multiply(a+b, c+d) - ac - bd
+    ab_plus_bc = k_multiply(a + b, c + d) - ac - bd
 
-    product = 10**(2*nby2) * ac + (10**nby2 * ab_plus_bc) + bd
+    product = 10 ** (2 * nby2) * ac + (10 ** nby2 * ab_plus_bc) + bd
 
     return product
 
@@ -73,6 +73,6 @@ def num_digits(num):
         return int(math.log10(num)) + 1
     else:
         counter = 15
-        while num >= 10**counter:
+        while num >= 10 ** counter:
             counter += 1
         return counter

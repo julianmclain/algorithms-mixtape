@@ -61,7 +61,7 @@ def _contract_edge(graph, e1, e2):
     for vertex in graph[e1]:
         graph[vertex].remove(e1)
         if vertex == e1:
-            raise Exception('There was a self-reference')
+            raise Exception("There was a self-reference")
         if vertex != e2:
             graph[e2].append(vertex)
             graph[vertex].append(e2)
