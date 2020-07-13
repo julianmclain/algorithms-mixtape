@@ -39,16 +39,16 @@ def count_inversions(num_list):
     return count
 
 
-def _count_and_sort(num_list):
+def _count_and_sort(arr) -> Tuple[list, int]:
     # Base case
-    if len(num_list) < 2:
-        return num_list, 0
+    if len(arr) < 2:
+        return arr, 0
 
     # Recursive case
-    split = len(num_list) // 2
+    split = len(arr) // 2
 
-    left, left_count = _count_and_sort(num_list[:split])
-    right, right_count = _count_and_sort(num_list[split:])
+    left, left_count = _count_and_sort(arr[:split])
+    right, right_count = _count_and_sort(arr[split:])
     sorted_list, split_count = _mergesort_and_count(left, right)
 
     total_count = left_count + right_count + split_count
@@ -56,24 +56,24 @@ def _count_and_sort(num_list):
     return sorted_list, total_count
 
 
-def _mergesort_and_count(l, r):
+def _mergesort_and_count(arr1, arr2):
     # Assumes l and r are already sorted
-    l_index = 0
-    r_index = 0
+    i = 0
+    j = 0
     sorted_list = []
     split_count = 0
 
-    while l_index < len(l) and r_index < len(r):
-        if l[l_index] <= r[r_index]:
-            sorted_list.append(l[l_index])
-            l_index += 1
+    while i < len(arr1) and j < len(arr2):
+        if arr1[i] <= arr2[j]:
+            sorted_list.append(arr1[i])
+            i += 1
         else:
-            sorted_list.append(r[r_index])
-            r_index += 1
-            split_count += len(l) - l_index
+            sorted_list.append(arr2[j])
+            j += 1
+            split_count += len(arr1) - i
 
-    sorted_list.extend(l[l_index:])
-    sorted_list.extend(r[r_index:])
+    sorted_list.extend(arr1[i:])
+    sorted_list.extend(arr2[j:])
 
     return sorted_list, split_count
 

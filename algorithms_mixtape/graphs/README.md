@@ -90,3 +90,6 @@ terminates.
 
 From this generic formulation, different graph search algorithms emerge based on
 how the next edge to explore is chosen.
+
+Note that for graph search algorithms, it typically doesn't matter whether the
+graph is directed or not. Computing connectivity is an exception to that rule. 

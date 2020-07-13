@@ -13,16 +13,16 @@ Using the notation above, we can define 3 types of inversions:
 
 **`n` = the array length
 
-In practice, inversions can be used to measure the similarity of 2 ranked lists.
-For example, imagine you rank your 10 favorite movies. Then you ask your friend
-to take those same 10 favorite movies and provide her own rank list. If your
-friend ranks the same movies 1 - 10, there will be no inversions. If she
-provides the exact opposite rankings (i.e. 1 becomes 10, 9 becomes 2, etc...),
-there will be 10 choose 2 inversions (the maximum possible).
+In practice, an interesting application of inversions is measuring the
+similarity of 2 ranked lists. For example, imagine you rank your 10 favorite
+movies. Then you ask your friend to take those same 10 favorite movies and
+provide her own rank list. If your friend ranks the same movies 1 - 10, then
+there will be no inversions. If she provides the exact opposite rankings (i.e. 1
+becomes 10, 9 becomes 2, etc...), there will be 10 choose 2 inversions (the
+maximum possible).
 
-The concept of generating a measure of similarity between ranked lists is core to
+The concept of measuring the similarity between ranked lists is core to
 *collaborative filtering*, a technique used to make recommendations.
-
 
 ## Implementation 
 
@@ -32,7 +32,7 @@ An array containing the numbers 1 through `n` in an arbitrary order.
 
 ### Output
 
-The number of inversions of the array. 
+The number of inversions in the array. 
 
 ### Description 
 
@@ -53,28 +53,43 @@ intersects directly with sorting. Remember that an inversion is essentially
 just an element that's "out of order."
 
 The Divide and Conquer approach:
+- Have the function return the number of inversion *AND* the sorted array. That
+  way, the `merge` function will receive 2 sorted lists.
+
+`count_inversions(A: array) -> array, int`
 1. If `n = 1`, return 0
-2. B, x = recursive call with the first half of the array. Returns a sorted array and the number of inversions.
-3. C, y = recursive call with the left half of the array. Returns a sorted array and the number of inversions.
-4. D, z = merge x and y while counting all split inversions. If you have a sorted left array, B, and a sorted right array, C, then you have a split inversion any time you copy an element from C into the output array while B is not empty. More specifically, if you have indicies `i` of `B` and `j` of `C`, then the number of inversions created when `C[j]` is copied to the output array is equal to the number of remaining elements in `B`. This is because B is already sorted. If `C[j]` is less than `B[i]`, it must also be less than every element after `B[i]`.
-5. return x + y + z
+2. *B*, *x* = make a recursive call with the first half of the array.
+3. *C*, *y* = make recursive call with the left half of the array.
+4. *D*, *z* = merge *B* and *C* while counting all split inversions. 
+
+
+`merge(B: array, C: array) -> array, int`
+
+Because *B* and *C* are already sorted, there's at least one split inversion any
+time an element in *C* is less than an element in *B*. The exact number of split
+inversions depends on the number of elements still in *B*.
+
+For example, let *n* equal the length of *C*. If `C[j] < B[i]`, then the number
+of split inversions equals `n - j`.
+
+See [mergesort](/algorithms_mixtape/mergesort) for a full description of merging 2 sorted arrays.
 
 ## Analysis
 
-The runtime of the entire function will be equal to the runtime of the 'merge and count split inversions' subroutine multiplied by the number of times it's called. 
+### Asymptotic Runtime
 
-The 'merge and count inversions' must loop through `n` elements while building the ouput array. For each index of the ouptput array, the subroutine copies an element from the sub-array and possibly adding to the inversion count. As a result, copying the elements from the sub-arrays to the output array requires `0(n)` work. Adding to the inversion count requires at most `1/2n` additions since in the 'worst-case-scenario', every element in the second sub-array will be copied before the first sub-array. However, in this scenario, once the second sub-array is copied, there will be no more additions. `0(n)` runtime for copying the elements plus `0(n)` for counting inversions (drop the 1/2 constant) equals `0(n)` for the entire subroutine.
+Given the above implementation, you can see that algorithm for counting
+inversions is mergesort with a small modification that keeps track of the number
+of inversions. The relevant question is: if mergesort runs in *O*(*n* log *n*)
+time, does keeping tracking track of the number of inversions impact the
+asymptotic runtime?
 
-The main function makes 2 recursive calls, each with half of the input array. This results in `log n` runtime. Combining the main function and the subroutine, you get `0(n log n)` for the entire algorithm.
+The answer is a resounding *nope*. Initializing and incrementing a counter can be done
+in constant time.
 
-Confirmed using the Master Method:
+The runtime for computing inversions of an array is:
 
-*T*(*n*) <= *aT*(*n*/*b*) + *O*(*n*<sup>*d*</sup>)
+> *O*(*n* log *n*) 
 
-*a* = 2
-
-*b* = 2
-
-*d* = 1
-
-*T*(*n*) <= *O*(*n* log *n*)
+If you're interested in more detail, I recommend checking out the analysis of
+[mergesort](/algorithms_mixtape/mergesort).
