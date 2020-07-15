@@ -16,7 +16,7 @@ def bfs(graph, start) -> list:
         The list of reachable vertices in the order they were visited.
     """
     visited = [start]
-    q = deque(start)  # FIFO
+    q = deque(start)  # FIFO queue
     while q:
         v = q.popleft()
         for w in graph[v]:
@@ -26,8 +26,8 @@ def bfs(graph, start) -> list:
     return visited
 
 
-def shortest_path(graph: dict, start: str, end: str) -> int:
-    """Find the shortest path to a vertex.
+def dist(graph: dict, start: str, end: str) -> int:
+    """Find the shortest distance to a vertex.
 
     Parameters
     ----------
@@ -41,22 +41,22 @@ def shortest_path(graph: dict, start: str, end: str) -> int:
         The fewest number of vertices in a path from start to end.
     """
     visited = [start]
-    q = deque([(start, 0)])  # FIFO
+    q = deque([(start, 0)])
     while q:
-        v, dist = q.popleft()
+        v, l = q.popleft()
         for w in graph[v]:
             if w == end:
-                return dist + 1
+                return l + 1
             elif w not in visited:
                 visited.append(w)
-                q.append((w, dist + 1))
+                q.append((w, l + 1))
     raise ValueError(f"{end} is not reachable from {start}")
 
 
 def shortest_path_remix(graph: dict, start: str, end: str) -> list:
     """Find the shortest path to a vertex.
 
-    This algorithm makes a small change to the standard BFS procedure. Each
+    This was an off-the-cuff attempt to write a shortest path algorithm. Each
     'non-end' iteration of the while loop examines the edges of the current
     node and adds a copy of the entire path to the worklist. This way it keeps
     track of how it got to the current vertex.
@@ -89,7 +89,7 @@ def shortest_path_remix(graph: dict, start: str, end: str) -> list:
     raise ValueError(f"{end} is not reachable from {start}")
 
 
-def connected_components(graph):
+def num_ucc(graph):
     """Compute the number of connected components of an undirected graph.
 
     Parameters
@@ -110,7 +110,7 @@ def connected_components(graph):
     return ccs
 
 
-def connected_components_remix(graph):
+def ucc(graph):
     """Compute the connected components of an undirected graph.
 
     Parameters

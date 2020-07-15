@@ -15,21 +15,22 @@ def dfs(graph: dict, start: str) -> list:
         The vertices reachable from 'start' in the order that they were seen.
     """
     visited = []
-    s = deque([start])  # LIFO
+    s = [start]  # LIFO stack
     while s:
-        v = s.popleft()
+        v = s.pop()
         if v not in visited:
             visited.append(v)
             for w in graph[v]:
-                s.appendleft(w)
+                s.append(w)
     return visited
+
 
 def topological_sort(graph: dict) -> list:
     pass
+
 
 def strongly_connected_components():
     """
     Kosaraju's algorithm
     """
     pass
-
