@@ -4,7 +4,7 @@ Intuitively, you can think of depth-first search as the aggressive way to search
 a graph. DFS explores the graph by traversing edges directed away from the
 starting point, only backtracking when necessary.
 
-![graph-dfs](https://www.dropbox.com/s/kc8xzwqupxw5gxt/graph-dfs.jpg?dl=0)
+![graph-dfs](https://www.dropbox.com/s/kc8xzwqupxw5gxt/graph-dfs.jpg?raw=1)
 
 ## Implementation
 
@@ -23,9 +23,12 @@ Imperative approach:
 - For an imperative implementation, you can use the same approach as BFS,
   swapping the queue out for a stack (LIFO).
 
+# TODO - implementation isn't the exact same. Note the difference in when you mark a node as visited.
+
 Recursive approach:
 - Mark the vertex *s* as explored
 - For every edge (*s*, *v*), call *DFS* again with *v* if *v* is unexplored.
+
 
 ## Asymptotic Runtime
 

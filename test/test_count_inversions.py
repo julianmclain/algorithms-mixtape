@@ -1,6 +1,6 @@
 import unittest
 import pathlib
-from algorithms_mixtape.count_inversions.count_inversions import count_inversions 
+from algorithms_mixtape.count_inversions.count_inversions import count_inversions
 
 
 class TestCountInversions(unittest.TestCase):
@@ -23,8 +23,11 @@ class TestCountInversions(unittest.TestCase):
         Your task is to compute the number of inversions in the file given,
         where the i^{th} row of the file indicates the i^{th} entry of an array.
         """
-        path = pathlib.Path(__file__).resolve().parents[0] / "fixtures/1_to_100000_distinct_unordered.txt"
-        with open(path, 'r') as test_file:
+        path = (
+            pathlib.Path(__file__).resolve().parents[0]
+            / "fixtures/1_to_100000_distinct_unordered.txt"
+        )
+        with open(path, "r") as test_file:
             test_input = [int(line) for line in test_file]
         count = count_inversions(test_input)
         self.assertEqual(2407905288, count)

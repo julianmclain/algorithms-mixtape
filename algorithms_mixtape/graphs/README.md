@@ -25,7 +25,7 @@ Examples of graphs:
 
 Let *n* represent the number of vertices and *m* represent the number of edges.
 
-If you consider an undirected grpah with *n* verticies, no parallel edges, and
+If you consider an undirected graph with *n* vertices, no parallel edges, and
 is connected, the following is true:
 - The min number of possible edges is *n* - 1
 - The max number of possible edges is *n*(*n* - 1)/2
@@ -52,14 +52,17 @@ graphs.
 
 ### Adjacency Lists
 
-For adjacency lists, there are the following ingredients:
+There are various ways to represent an adjacency list. You can use a two-dimensional array in which 
+each index position represents a vertex and the array stored at that index holds a pointer to adjacent vertices. Guido Van Rossum has proposed a [dict representation](https://www.python.org/doc/essays/graphs/) when working in Python. 
+
+Tim Roughgarden proposes a representation with the following ingredients:
 - An array of vertices
 - An array of edges
 - Each edge entry stores a pointer to its endpoints (2 vertices)
 - Each vertex entry stores a pointer to its edges 
 
 Think about the space requirements for adjacency lists. It's equal to Θ(*n* +
-*m*). For this reason, adjacency matrices are better suited to sparce graphs.
+*m*). For this reason, adjacency matrices are better suited to sparse graphs.
 
 
 ## Graph Search
@@ -93,3 +96,12 @@ how the next edge to explore is chosen.
 
 Note that for graph search algorithms, it typically doesn't matter whether the
 graph is directed or not. Computing connectivity is an exception to that rule. 
+
+## Connected Components
+
+The goal of graph connectivity is to compute all of the "connected components"
+of a graph *G*. The following graph has 3 components:
+
+![undirected-graph-conn](https://www.dropbox.com/s/f397saccydcnfd6/undirected-graph-conn.jpg?raw=1)
+
+For undirected graphs, this is an easy problem to solve. It can be done with BFS or DFS.
