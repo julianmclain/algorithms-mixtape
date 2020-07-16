@@ -1,6 +1,3 @@
-from collections import deque
-
-
 def dfs(graph: dict, start: str) -> list:
     """Find all reachable vertices using DFS.
 
@@ -25,7 +22,31 @@ def dfs(graph: dict, start: str) -> list:
     return visited
 
 
-def topological_sort(graph: dict) -> list:
+def recursive_dfs(graph: dict, start: str, visited=[]) -> list:
+    """Recursively find all reachable vertices using DFS.
+
+    Parameters
+    ----------
+    graph : dict
+    start : str
+    visited : list
+
+    Return
+    ------
+    list
+        The vertices reachable from 'start' in the order that they were seen.
+    """
+    visited.append(start)
+    for neighbor in graph[start]:
+        if neighbor not in visited:
+            recursive_dfs(graph, neighbor, visited)
+    return visited
+
+
+def topo_sort(graph: dict) -> list:
+    # TODO
+    # https://www.youtube.com/watch?v=AfSk24UTFS8
+    # https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/recitation-videos/MIT6_006F11_rec14.pdf
     pass
 
 
