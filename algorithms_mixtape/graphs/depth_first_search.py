@@ -50,8 +50,11 @@ def topo_sort(graph: dict) -> list:
     pass
 
 
-def strongly_connected_components():
-    """
+def scc(graph: dict):
+    """Compute the strongly connected components of a directed graph.
+
     Kosaraju's algorithm
+
+    https://drive.google.com/file/d/1oyFlv810Ekc1QteXqDgb83vTkJEhAtnR/view
     """
     pass

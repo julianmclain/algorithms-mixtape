@@ -11,7 +11,11 @@ first node) is used to represent the whole list.
 
 ![singly-linked-list](https://www.dropbox.com/s/lau2023zvxjdsly/singly-linked-list.png?raw=1)
 
-### Operations
+## Intersecting Linked Lists
+
+## Detecting cycles
+
+## Operations
 
 The real magic of linked lists happens when you're able to limit your operations
 to using only the `head` of the list or the `tail` of the list.
