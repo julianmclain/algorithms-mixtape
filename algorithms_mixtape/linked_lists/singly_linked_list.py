@@ -3,6 +3,9 @@ class Node:
         self.val = val
         self.next = next
 
+    def __repr__(self):
+        return f"LinkedList Object, val = {self.val}"
+
 
 class LinkedList:
     def __init__(self):
