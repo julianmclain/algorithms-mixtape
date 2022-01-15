@@ -35,4 +35,4 @@ class DepthFirstSearchTest(unittest.TestCase):
         pass
 
     def test_scc(self):
-        print(read_graph("scc_graph_1.txt"))
+        read_graph("scc_graph_1.txt")
