@@ -1,6 +1,6 @@
 import unittest
 import pathlib
-from algorithms_mixtape.graphs.depth_first_search import dfs, recursive_dfs, topo_sort
+from algorithms_mixtape.graphs.depth_first_search import dfs, recursive_dfs
 
 
 def read_graph(file_name):
@@ -29,10 +29,6 @@ class DepthFirstSearchTest(unittest.TestCase):
         self.assertEqual(
             ["A", "B", "C", "D", "E", "F", "G"], recursive_dfs(self.graph, "A")
         )
-
-    def test_topo_sort(self):
-        # TODO
-        pass
 
     def test_scc(self):
         read_graph("scc_graph_1.txt")

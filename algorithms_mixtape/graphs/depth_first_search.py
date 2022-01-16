@@ -43,13 +43,6 @@ def recursive_dfs(graph: dict, start: str, visited=[]) -> list:
     return visited
 
 
-def topo_sort(graph: dict) -> list:
-    # TODO
-    # https://www.youtube.com/watch?v=AfSk24UTFS8
-    # https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/recitation-videos/MIT6_006F11_rec14.pdf
-    pass
-
-
 def scc(graph: dict):
     """Compute the strongly connected components of a directed graph.
 

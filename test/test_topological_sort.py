@@ -57,7 +57,8 @@ class TopologicalSortTest(unittest.TestCase):
         self.SOLUTION_1 = [5, 7, 3, 11, 8, 2, 9, 10]  # (visual top-to-bottom, left-to-right)
         self.SOLUTION_2 = [3, 5, 7, 8, 11, 2, 9, 10]  # (smallest-numbered available vertex first)
         self.SOLUTION_3 = [5, 7, 3, 8, 11, 10, 9, 2]  # (fewest edges first)
-        self.BAD_SOLUTION = [2, 7, 3, 8, 11, 10, 9, 5]  # switched the first and last of prev solution
+        # switched the first and last of prev solution
+        self.BAD_SOLUTION = [2, 7, 3, 8, 11, 10, 9, 5]
 
         self.assertTrue(is_valid_topo_sort(self.graph, self.SOLUTION_1))
         self.assertTrue(is_valid_topo_sort(self.graph, self.SOLUTION_2))
@@ -71,6 +72,7 @@ class TopologicalSortTest(unittest.TestCase):
 
     def test_dfs_topological_sort(self):
         self.assertTrue(is_valid_topo_sort(self.graph, dfs_topo_sort(self.graph)))
+        self.assertFalse(is_valid_topo_sort(self.graph_with_loop, dfs_topo_sort(self.graph_with_loop)))
     
 if __name__ == "__main__":
     unittest.main()
