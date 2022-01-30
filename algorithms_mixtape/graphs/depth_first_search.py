@@ -12,13 +12,13 @@ def dfs(graph: dict, start: str) -> list:
         The vertices reachable from 'start' in the order that they were seen.
     """
     visited = []
-    s = [start]  # LIFO stack
-    while s:
-        v = s.pop()
+    stack = [start]
+    while stack:
+        v = stack.pop()
         if v not in visited:
             visited.append(v)
             for w in graph[v]:
-                s.append(w)
+                stack.append(w)
     return visited
 
 
@@ -41,13 +41,3 @@ def recursive_dfs(graph: dict, start: str, visited=[]) -> list:
         if neighbor not in visited:
             recursive_dfs(graph, neighbor, visited)
     return visited
-
-
-def scc(graph: dict):
-    """Compute the strongly connected components of a directed graph.
-
-    Kosaraju's algorithm
-
-    https://drive.google.com/file/d/1oyFlv810Ekc1QteXqDgb83vTkJEhAtnR/view
-    """
-    pass

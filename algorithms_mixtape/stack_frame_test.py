@@ -14,7 +14,7 @@ LOAD_WORD = 0x01
 STORE_WORD = 0x02
 ADD = 0x03
 SUB = 0x04
-HALT = 0xff
+HALT = 0xFF
 
 memory = [0] * 256
 process_counter = 0
@@ -44,8 +44,7 @@ def main_loop() -> int:
         elif curr_instruction == LOAD_WORD:
             reg = memory[curr_count + 1]
             word_addr = memory[curr_count + 2]
-            registers[reg] = load_num(
-                memory[word_addr], memory[word_addr + 1])
+            registers[reg] = load_num(memory[word_addr], memory[word_addr + 1])
 
         elif curr_instruction == STORE_WORD:
             word = registers[memory[curr_count + 1]]
@@ -80,14 +79,14 @@ def store_num(num: int, addr: int, memory: int):
     byte1 = num % 256
     byte2 = num // 256
     memory[addr] = byte1
-    memory[addr+1] = byte2
+    memory[addr + 1] = byte2
 
 
 def twos_comp(num: int, num_bits: int) -> int:
     """Calculate the two's compliment of an n-bit unsigned int
     """
     if num >> (num_bits - 1) == 1:
-        return num - 2**num_bits
+        return num - 2 ** num_bits
     else:
         return num
 
@@ -125,23 +124,33 @@ def load_program(file: str) -> None:
         # parse segment header
         header_length = 3  # bytes
         offset = i * header_length * 2  # times 2 because 2 hex chars per byte
-        segment_type = int(hex_string[2+offset:4+offset], 16) >> 7  # get the most significant bit
-        segment_addr = int(hex_string[2+offset:4+offset], 16) % 128  # get the least 7 significant bits
-        segment_len = int(hex_string[4+offset:6+offset], 16)
-        payload_loc = int(hex_string[6+offset:8+offset], 16)
+        segment_type = (
+            int(hex_string[2 + offset : 4 + offset], 16) >> 7
+        )  # get the most significant bit
+        segment_addr = (
+            int(hex_string[2 + offset : 4 + offset], 16) % 128
+        )  # get the least 7 significant bits
+        segment_len = int(hex_string[4 + offset : 6 + offset], 16)
+        payload_loc = int(hex_string[6 + offset : 8 + offset], 16)
         absolute_starting_loc = 2 * (3 * num_segments + payload_loc + 1)
         segment_data = []
         for i in range(segment_len):
             if i + 1 >= segment_len:
                 segment_data.append(hex_string[i])
             elif i % 2 == 0:
-                segment_data.append(hex_string[absolute_starting_loc+i:absolute_starting_loc+i+2])
-        segment = hex_string[absolute_starting_loc:absolute_starting_loc+segment_len]
+                segment_data.append(
+                    hex_string[
+                        absolute_starting_loc + i : absolute_starting_loc + i + 2
+                    ]
+                )
+        segment = hex_string[
+            absolute_starting_loc : absolute_starting_loc + segment_len
+        ]
 
         # save segment to memory
         for i in range(0, len(segment), 2):
-            memory[segment_addr+i] = int(hex_string[absolute_starting_loc+i], 16)
-        x=1
+            memory[segment_addr + i] = int(hex_string[absolute_starting_loc + i], 16)
+        x = 1
 
 
 class TestVirtualMachine(unittest.TestCase):
@@ -149,15 +158,26 @@ class TestVirtualMachine(unittest.TestCase):
         load_program("add_255_3.vef")
         # [1, 1, 16, 1, 2, 18, 3, 1, 2, 2, 1, 14, 255, 0, 0, 0, 161, 20, 12, 0]
         main_memory = [
-            0x01, 0x01, 0x10,   # load_word r1 (0x10)
-            0x01, 0x02, 0x12,   # load_word r2 (0x12)
-            0x03, 0x01, 0x02,   # add r1 r2
-            0x02, 0x01, 0x0e,   # store_word r1 (0x0E)
-            0xff,               # halt
-            0x00,               # unused
-            0x00, 0x00,         # out
-            0xa1, 0x14,         # in1
-            0x0c, 0x00          # in2
+            0x01,
+            0x01,
+            0x10,  # load_word r1 (0x10)
+            0x01,
+            0x02,
+            0x12,  # load_word r2 (0x12)
+            0x03,
+            0x01,
+            0x02,  # add r1 r2
+            0x02,
+            0x01,
+            0x0E,  # store_word r1 (0x0E)
+            0xFF,  # halt
+            0x00,  # unused
+            0x00,
+            0x00,  # out
+            0xA1,
+            0x14,  # in1
+            0x0C,
+            0x00,  # in2
         ]
         status = main_loop()
         self.assertEqual(status, 0)
@@ -166,15 +186,26 @@ class TestVirtualMachine(unittest.TestCase):
 
     def test_negative_nums(self):
         main_memory = [
-            0x01, 0x01, 0x10,   # load_word r1 (0x10)
-            0x01, 0x02, 0x12,   # load_word r2 (0x12)
-            0x03, 0x01, 0x02,   # add r1 r2
-            0x02, 0x01, 0x0e,   # store_word r1 (0x0E)
-            0xff,               # halt
-            0x00,               # unused
-            0x00, 0x00,         # out
-            0x50, 0x00,         # in1 (80)
-            0x9c, 0xff,         # in2 (-100)
+            0x01,
+            0x01,
+            0x10,  # load_word r1 (0x10)
+            0x01,
+            0x02,
+            0x12,  # load_word r2 (0x12)
+            0x03,
+            0x01,
+            0x02,  # add r1 r2
+            0x02,
+            0x01,
+            0x0E,  # store_word r1 (0x0E)
+            0xFF,  # halt
+            0x00,  # unused
+            0x00,
+            0x00,  # out
+            0x50,
+            0x00,  # in1 (80)
+            0x9C,
+            0xFF,  # in2 (-100)
         ]
         status = main_loop()
         self.assertEqual(status, 0)
@@ -182,5 +213,5 @@ class TestVirtualMachine(unittest.TestCase):
         self.assertEqual(twos_comp(result, 16), -20)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

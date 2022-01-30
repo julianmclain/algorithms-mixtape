@@ -18,11 +18,17 @@ class Solution:
                 column_index = int(column) + direction[1]
                 is_valid_row = 0 <= row_index < len(grid)
                 is_valid_column = 0 <= column_index < len(grid[0])
-                if is_valid_row and is_valid_column and grid[row_index][column_index] != "0":
+                if (
+                    is_valid_row
+                    and is_valid_column
+                    and grid[row_index][column_index] != "0"
+                ):
                     neighbors.append((row_index, column_index))
             return neighbors
 
-        def dfs(row: int, column: int, grid: List[List[str]], visited: Set[Tuple[int, int]]) -> Set[Tuple[int, int]]:
+        def dfs(
+            row: int, column: int, grid: List[List[str]], visited: Set[Tuple[int, int]]
+        ) -> Set[Tuple[int, int]]:
             if (row, column) not in visited:
                 visited.add((row, column))
                 for neighbor in get_neighbors(row, column, grid):
@@ -40,25 +46,24 @@ class Solution:
         visited = set()
         for r in range(nr):
             for c in range(nc):
-                if (grid[r][c] == "1" and (r, c) not in visited):
+                if grid[r][c] == "1" and (r, c) not in visited:
                     num_islands += 1
                     visited.union(dfs(r, c, grid, visited))
         return num_islands
 
 
-
 grid_one = [
-  ["1","1","1","1","0"],
-  ["1","1","0","1","0"],
-  ["1","1","0","0","0"],
-  ["0","0","0","0","0"]
+    ["1", "1", "1", "1", "0"],
+    ["1", "1", "0", "1", "0"],
+    ["1", "1", "0", "0", "0"],
+    ["0", "0", "0", "0", "0"],
 ]
 
 grid_two = [
-  ["1","0","0","0","0"],
-  ["0","0","0","0","0"],
-  ["0","0","0","0","0"],
-  ["0","0","0","0","1"]
+    ["1", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "1"],
 ]
 
 x = Solution()

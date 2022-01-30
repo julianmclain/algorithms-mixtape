@@ -41,6 +41,7 @@ class Person:
 
 def count_members(family_tree):
     """This one done strictly according to the recursion template"""
+
     def fn_for_person(person):
         if not person:
             return 0
@@ -102,6 +103,7 @@ def create_roster_acc(person, acc={}):
 
 def max_age1(family_tree):
     """This one done strictly according to the template"""
+
     def fn_for_person(person):
         if not person:
             return 0
@@ -125,6 +127,7 @@ def max_age1(family_tree):
 
 def max_age2(family_tree):
     """This one done with better practices but still 2 functions"""
+
     def fn_for_person(person):
         if not person:
             return 0
@@ -153,7 +156,10 @@ class TestMutualReference(unittest.TestCase):
                 Person(
                     "Harry Potter",
                     46,
-                    [Person("James Sirius Potter", 10, []), Person("Lily Luna Potter", 8, [])],
+                    [
+                        Person("James Sirius Potter", 10, []),
+                        Person("Lily Luna Potter", 8, []),
+                    ],
                 )
             ],
         )
@@ -168,6 +174,11 @@ class TestMutualReference(unittest.TestCase):
         self.assertEqual(67, max_age2(self.family_tree))
 
     def test_create_roster(self):
-        expected = {'James Potter': 67, 'Harry Potter': 46, 'James Sirius Potter': 10, 'Lily Luna Potter': 8}
+        expected = {
+            "James Potter": 67,
+            "Harry Potter": 46,
+            "James Sirius Potter": 10,
+            "Lily Luna Potter": 8,
+        }
         self.assertEqual(expected, create_roster_blend(self.family_tree))
         self.assertEqual(expected, create_roster_acc(self.family_tree))

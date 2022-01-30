@@ -1,6 +1,6 @@
 import unittest
 import pathlib
-from algorithms_mixtape.kargers_min_cut.kargers_min_cut import min_cut
+from algorithms_mixtape.graphs.kargers_min_cut import min_cut
 
 
 def read_adjacency_list():

@@ -3,13 +3,6 @@ import pathlib
 from algorithms_mixtape.graphs.depth_first_search import dfs, recursive_dfs
 
 
-def read_graph(file_name):
-    path = pathlib.Path(__file__).resolve().parents[0] / f"fixtures/{file_name}"
-    with open(path, "r") as f:
-        graph = [line.strip().split(" ") for line in f]
-    return graph
-
-
 class DepthFirstSearchTest(unittest.TestCase):
     def setUp(self):
         self.graph = {
@@ -29,6 +22,3 @@ class DepthFirstSearchTest(unittest.TestCase):
         self.assertEqual(
             ["A", "B", "C", "D", "E", "F", "G"], recursive_dfs(self.graph, "A")
         )
-
-    def test_scc(self):
-        read_graph("scc_graph_1.txt")
