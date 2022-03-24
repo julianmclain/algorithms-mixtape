@@ -33,23 +33,23 @@ class BreadthFirstSearchTest(unittest.TestCase):
 
     def test_num_ucc(self):
         graph = {
-            "A": set(["B", "C"]),
-            "B": set(["C", "A"]),
-            "C": set(["A", "B"]),
+            "A": {"B", "C"},
+            "B": {"C", "A"},
+            "C": {"A", "B"},
             "D": set(),
-            "E": set(["F"]),
-            "F": set(["E"]),
+            "E": {"F"},
+            "F": {"E"},
         }
         self.assertEqual(3, num_ucc(graph))
 
     def test_ucc(self):
         graph = {
-            "A": set(["B", "C"]),
-            "B": set(["C", "A"]),
-            "C": set(["A", "B"]),
+            "A": {"B", "C"},
+            "B": {"C", "A"},
+            "C": {"A", "B"},
             "D": set(),
-            "E": set(["F"]),
-            "F": set(["E"]),
+            "E": {"F"},
+            "F": {"E"},
         }
         expected = [["A", "C", "B"], ["D"], ["E", "F"]]
         components = ucc(graph)
