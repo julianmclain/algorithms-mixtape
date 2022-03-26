@@ -17,8 +17,14 @@ class WeightedGraph:
     def vertices(self) -> List[int]:
         return list(self.graph.keys())
 
-    def incident_edges(self, vertex: int) -> List[WeightedEdge]:
+    def get_outgoing_edges(self, vertex: int) -> List[WeightedEdge]:
+        """
+        Get a list of edges in the which provided vertex is the tail of the edge
+        """
         return self.graph[vertex]
 
     def add_edge(self, edge: WeightedEdge) -> None:
+        """
+        Add an edge to the graph
+        """
         self.graph[edge.tail].append(edge)
