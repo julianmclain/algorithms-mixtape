@@ -56,3 +56,9 @@ class DijkstrasShortestPathTest(unittest.TestCase):
         distances = [shortest_paths[i] for i in range(1, len(shortest_paths) + 1)]
         expected = [0, 1, 2, 3, 4, 4, 3, 2]  # shortest path for vertices 1 - 8 in order
         self.assertEqual(distances, expected)
+
+    def test_shortest_path_my_heap_small_undirected_graph(self):
+        shortest_paths = shortest_path(self.small_undirected_graph, 1, use_my_heap=True)
+        distances = [shortest_paths[i] for i in range(1, len(shortest_paths) + 1)]
+        expected = [0, 1, 2, 3, 4, 4, 3, 2]  # shortest path for vertices 1 - 8 in order
+        self.assertEqual(distances, expected)

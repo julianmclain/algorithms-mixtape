@@ -5,7 +5,7 @@ from collections import defaultdict
 from functools import reduce
 
 from algorithms_mixtape.graphs.graph import WeightedGraph, WeightedEdge
-from algorithms_mixtape.heaps.heap import StandardLibHeap, Heap
+from algorithms_mixtape.heaps.heap import StandardLibHeap, Heap, MyHeap
 
 
 def shortest_path_naive(graph: WeightedGraph, start) -> Dict[int, int]:
@@ -64,7 +64,7 @@ def _find_shortest_edge(
     return shortest_edge
 
 
-def shortest_path(graph: WeightedGraph, start) -> Dict[int, Number]:
+def shortest_path(graph: WeightedGraph, start, use_my_heap=False) -> Dict[int, Number]:
     """
     The distance to unreachable vertices is infinity
 
@@ -79,7 +79,7 @@ def shortest_path(graph: WeightedGraph, start) -> Dict[int, Number]:
         if v is not start:
             dists[v] = math.inf
 
-    heap = StandardLibHeap()
+    heap = MyHeap() if use_my_heap else StandardLibHeap()
     for v in graph.vertices:
         heap.insert(key=dists[v], item=v)
 
