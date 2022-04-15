@@ -8,6 +8,7 @@ REMOVED = "<removed-task>"  # placeholder for a removed task
 K = TypeVar("K")
 V = TypeVar("V", bound=Hashable)
 
+
 class Heap(ABC, Generic[K, V]):
     """
     Simple heap interface. It doesn't allow duplicate items.
@@ -120,7 +121,7 @@ class MyHeap(Heap):
         entry = HeapEntry(item)
         self.entry_finder[item] = entry
         self.h.append((key, entry))
-        self._bubble_up(len(self.h)-1)
+        self._bubble_up(len(self.h) - 1)
 
     def extract_min(self) -> Tuple[K, V]:
         min_key, min_entry = self.h[0]
@@ -128,7 +129,7 @@ class MyHeap(Heap):
 
         if len(self.h) >= 1:
             self.h[0] = last_entry
-            self._bubble_down(0, len(self.h)-1)
+            self._bubble_down(0, len(self.h) - 1)
 
         if min_entry.item == REMOVED:
             return self.extract_min()

@@ -1,6 +1,9 @@
 import pathlib
 import unittest
-from algorithms_mixtape.graphs.dijkstras_shortest_path import shortest_path_naive, shortest_path
+from algorithms_mixtape.graphs.dijkstras_shortest_path import (
+    shortest_path_naive,
+    shortest_path,
+)
 from algorithms_mixtape.graphs.graph import WeightedEdge, WeightedGraph
 
 

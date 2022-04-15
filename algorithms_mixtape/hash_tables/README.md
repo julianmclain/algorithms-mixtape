@@ -1,7 +1,7 @@
 # Hash Tables
 
 A Hash Table is a data structure which organizes data using hash functions in
-order to support quick insertion and search.
+order to support quick lookups.
 
 Hash tables are used to implement many data structures, 2 of the most common
 uses are the hash set and hash map.
@@ -41,6 +41,20 @@ Search:
 - For example, if we search for 23, will map 23 to 3 and search in bucket 3. And
   We find out that 23 is not in bucket 3 which means 23 is not in the hash
   table.
+
+## Applications
+
+Practical programming applications of sets
+- Detecting duplicates
+- Detecting cycles
+- Tracking items "seen" so far
+- Identifying unions, intersections, or whether collections are disjoint
+- When you need to store 2 pieces of related together (key, value)
+- When you want fast information lookup by key [common restaurant example](https://leetcode.com/explore/learn/card/hash-table/184/comparison-with-other-data-structures/1177/)
+- When you want to aggregate information by key
+  - e.g. Counter in Python [first unique character example](https://leetcode.com/explore/learn/card/hash-table/184/comparison-with-other-data-structures/1119/)
+  - e.g. Designing a key function that will group data [Design the key](https://leetcode.com/explore/learn/card/hash-table/185/hash_table_design_the_key/1125/)
+
 
 ## The hash function
 

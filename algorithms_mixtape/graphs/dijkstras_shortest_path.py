@@ -92,7 +92,9 @@ def shortest_path(graph: WeightedGraph, start, use_my_heap=False) -> Dict[int, N
     return dists
 
 
-def ensure_min_dijkstra_scores(graph: WeightedGraph, vertex: int, heap: Heap, dists: Dict[int, Number]) -> None:
+def ensure_min_dijkstra_scores(
+    graph: WeightedGraph, vertex: int, heap: Heap, dists: Dict[int, Number]
+) -> None:
     """
     This function maintains the following invariant:
 
