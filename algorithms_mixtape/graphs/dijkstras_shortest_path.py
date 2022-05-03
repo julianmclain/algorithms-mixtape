@@ -1,6 +1,6 @@
 import math
 from numbers import Number
-from typing import Dict, Set, List
+from typing import Dict, List
 from collections import defaultdict
 from functools import reduce
 
@@ -20,29 +20,14 @@ def shortest_path_naive(graph: WeightedGraph, start) -> Dict[int, int]:
     dists = defaultdict(lambda: -1)
     dists[start] = 0
 
-    frontier_crossing_edges = _find_frontier_crossing_edges(graph, seen)
+    frontier_crossing_edges = graph.find_frontier_crossing_edges(seen)
     while len(frontier_crossing_edges) > 0:
         shortest_edge = _find_shortest_edge(frontier_crossing_edges, dists)
         dists[shortest_edge.head] = dists[shortest_edge.tail] + shortest_edge.weight
         seen.add(shortest_edge.head)
-        frontier_crossing_edges = _find_frontier_crossing_edges(graph, seen)
+        frontier_crossing_edges = graph.find_frontier_crossing_edges(seen)
 
     return dists
-
-
-def _find_frontier_crossing_edges(
-    graph: WeightedGraph, seen: Set[int]
-) -> List[WeightedEdge]:
-    """
-    A frontier crossing edge is one with tail in seen and head not in seen
-    """
-    edges = []
-    for tail in seen:
-        for incident_edge in graph.get_outgoing_edges(tail):
-            if incident_edge.head not in seen:
-                edges.append(incident_edge)
-
-    return edges
 
 
 def _find_shortest_edge(
@@ -72,7 +57,6 @@ def shortest_path(graph: WeightedGraph, start, use_my_heap=False) -> Dict[int, N
     :param start:
     :return: dictionary of vertex label to shortest distance to start
     """
-    seen = set()
     dists = defaultdict(lambda: math.inf)
     dists[start] = 0
     for v in graph.vertices:
@@ -85,7 +69,6 @@ def shortest_path(graph: WeightedGraph, start, use_my_heap=False) -> Dict[int, N
 
     while not heap.is_empty():
         dist, w = heap.extract_min()
-        seen.add(w)
         dists[w] = dist
         ensure_min_dijkstra_scores(graph, w, heap, dists)
 

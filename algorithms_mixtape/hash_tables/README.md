@@ -3,13 +3,8 @@
 A Hash Table is a data structure which organizes data using hash functions in
 order to support quick lookups.
 
-Hash tables are used to implement many data structures, 2 of the most common
-uses are the hash set and hash map.
-
-- The hash set is one of the implementations of a set data structure to store no
-  repeated values.
-- The hash map is one of the implementations of a map data structure to store
-  (key, value) pairs.
+Hash Tables are used to implement several data structures such as Hash Maps,
+Hash Sets, and Bloom Filters.
 
 The key idea behind hash tables is to use a hash function to map keys to
 buckets. To be more specific:
@@ -26,13 +21,11 @@ In the example, we use y = x % 5 as our hash function. Let's go through the
 insertion and search strategies using this example.
 
 Insertion:
-
 - We pass the keys through the hash function to map them into the corresponding
   bucket.
 - For example, 1987 is assigned to bucket 2 while 24 is assigned to bucket 4.
 
 Search:
-
 - We pass the keys through the same hash function and search only in the
   specific bucket.
 - For example, if we search for 1987, we will use the same hash function to map
@@ -111,9 +104,9 @@ Hash function design
   keys evenly across the storage space, so that we don't end up with the case
   that the majority of the keys are concentrated in a few spaces.]
 
-### Approach 1: modulo and array / linked list
+### Approach 1: chaining
 
-This is the simplest and most intuitive implementation.
+This is the simplest and most intuitive solution to hash collisions.
 
 The modulo operator is a common choice for the hashing function, i.e:
 
@@ -129,13 +122,7 @@ a tradeoff between the space usage and the collision probability.
 In addition, it is generally advisable to use a prime number as the base of the
 modulo, e.g. 769, in order to reduce the potential collisions.
 
-For the buckets you can use an array (list in Python). Arrays / lists aren't the most
-efficient choice since removing and inserting require O(n) time, but it's a familiar
-data structure and easy to work with.
-
-Since for any update operation, we would need to scan the entire bucket first to
-avoid any duplicate, a better choice for the implementation of bucket would be
-the LinkedList, which has a constant time complexity for the insertion as well
+Each element in the array (i.e. bucket) is a LinkedList, which has a constant time complexity for the insertion as well
 as deletion, once we locate the position to update.
 
 Time complexity: O(n/k)
