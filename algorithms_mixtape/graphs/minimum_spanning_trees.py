@@ -4,6 +4,9 @@ from algorithms_mixtape.heaps.heap import Heap
 
 
 def prim_mst_naive(graph: Dict[int, List[Tuple[int, int]]]) -> int:
+    """
+    Compute the minimum cost spanning tree of an undirected and connected graph through brute force search
+    """
     start = random.choice(list(graph.keys()))
     explored = {start}
     mst_cost = 0
@@ -20,6 +23,10 @@ def prim_mst_naive(graph: Dict[int, List[Tuple[int, int]]]) -> int:
 
 
 def prim_mst(graph: Dict[int, List[Tuple[int, int]]], heap: Heap) -> int:
+    """
+    Compute the minimum cost spanning tree of an undirected and connected graph. With modifications
+    this will work for directed and/or unconnected graphs.
+    """
     start = random.choice(list(graph.keys()))
     explored = {start}
     mst_cost = 0
