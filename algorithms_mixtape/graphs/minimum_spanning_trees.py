@@ -1,8 +1,9 @@
 import random
 from collections import defaultdict
 from operator import itemgetter
-from typing import Dict, List, Tuple, Set
+from typing import Dict, List, Tuple
 from algorithms_mixtape.heaps.heap import Heap
+from algorithms_mixtape.union_finds.union_find import UnionFind
 
 
 def prim_mst_naive(graph: Dict[int, List[Tuple[int, int]]]) -> int:
@@ -89,3 +90,28 @@ def _dfs(graph, start, target, explored) -> None:
     for to_vertex, _ in graph[start]:
         if to_vertex not in explored:
             _dfs(graph, to_vertex, target, explored)
+
+
+def kruskal_mst(graph: Dict[int, List[Tuple[int, int]]], uf: UnionFind) -> int:
+    """
+    Near linear time version of Kruskal's algorithm for computing the minimum cost spanning tree
+    of an undirected and connected graph
+
+    :return: minimum spanning tree cost
+    """
+    edges = []
+    for from_vertex, neighbors in graph.items():
+        for to_vertex, cost in neighbors:
+            edges.append((from_vertex, to_vertex, cost))
+    edges.sort(key=itemgetter(2))
+
+    mst = defaultdict(list)
+    for from_vertex, to_vertex, weight in edges:
+        if uf.find(from_vertex) != uf.find(to_vertex):
+            uf.union(from_vertex, to_vertex)
+            # since the graph is undirected, add both edges and later divide by 2 when computing min cost
+            mst[from_vertex].append((to_vertex, weight))
+            mst[to_vertex].append((from_vertex, weight))
+
+    min_cost = sum(cost for edges in mst.values() for _, cost in edges) / 2
+    return min_cost
