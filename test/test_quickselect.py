@@ -1,6 +1,6 @@
 import unittest
 from pathlib import Path
-from algorithms_mixtape.quickselect.quickselect import quickselect
+from algorithms_mixtape.selection.quickselect import quickselect
 
 
 class TestQuickSelect(unittest.TestCase):

@@ -1,7 +1,7 @@
 import unittest
 from collections import defaultdict
 from typing import Dict, List, Tuple
-from algorithms_mixtape.graphs.minimum_spanning_trees import prim_mst_naive, prim_mst
+from algorithms_mixtape.graphs.minimum_spanning_trees import prim_mst_naive, prim_mst, kruskal_mst_naive, _is_reachable
 from algorithms_mixtape.heaps.heap import StandardLibHeap
 from helpers import FIXTURE_DIRECTORY_PATH
 
@@ -60,3 +60,8 @@ class TestMinimumSpanningTrees(unittest.TestCase):
         self.assertEqual(7, prim_mst(small_graph, heap))
         self.assertEqual(14, prim_mst(read_graph("mst_graph.txt"), heap))
         self.assertEqual(-3612829, prim_mst(read_graph("large_mst_graph.txt"), heap))
+
+    def test_kruskal_mst_naive(self):
+        self.assertEqual(7, kruskal_mst_naive(small_graph))
+        self.assertEqual(14, kruskal_mst_naive(read_graph("mst_graph.txt")))
+        self.assertEqual(-3612829, kruskal_mst_naive(read_graph("large_mst_graph.txt")))

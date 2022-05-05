@@ -1,5 +1,5 @@
 import unittest
-from algorithms_mixtape.mergesort.mergesort import mergesort
+from algorithms_mixtape.sorting.mergesort import mergesort
 
 
 class TestMergeSort(unittest.TestCase):

@@ -1,6 +1,6 @@
 import unittest
 from pathlib import Path
-from algorithms_mixtape.quicksort.quicksort import quicksort
+from algorithms_mixtape.sorting.quicksort import quicksort
 
 
 class TestQuickSort(unittest.TestCase):

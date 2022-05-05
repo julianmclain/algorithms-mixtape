@@ -1,11 +1,16 @@
 import random
-from typing import Dict, List, Tuple
+from collections import defaultdict
+from operator import itemgetter
+from typing import Dict, List, Tuple, Set
 from algorithms_mixtape.heaps.heap import Heap
 
 
 def prim_mst_naive(graph: Dict[int, List[Tuple[int, int]]]) -> int:
     """
-    Compute the minimum cost spanning tree of an undirected and connected graph through brute force search
+    Brute force search version of Prim's algorithm for computing the minimum cost spanning tree
+    of an undirected and connected graph
+
+    :return: minimum spanning tree cost
     """
     start = random.choice(list(graph.keys()))
     explored = {start}
@@ -24,8 +29,10 @@ def prim_mst_naive(graph: Dict[int, List[Tuple[int, int]]]) -> int:
 
 def prim_mst(graph: Dict[int, List[Tuple[int, int]]], heap: Heap) -> int:
     """
-    Compute the minimum cost spanning tree of an undirected and connected graph. With modifications
-    this will work for directed and/or unconnected graphs.
+    Near linear time version of Prim's algorithm for computing  the minimum cost spanning tree
+    of an undirected and connected graph
+
+    :return: minimum spanning tree cost
     """
     start = random.choice(list(graph.keys()))
     explored = {start}
@@ -44,3 +51,41 @@ def prim_mst(graph: Dict[int, List[Tuple[int, int]]], heap: Heap) -> int:
                     heap.insert(cost, (min_edge_head, vertex))
 
     return mst_cost
+
+
+def kruskal_mst_naive(graph: Dict[int, List[Tuple[int, int]]]) -> int:
+    """
+    Brute force search version of Kruskal's algorithm for computing the minimum cost spanning tree
+    of an undirected and connected graph
+
+    :return: minimum spanning tree cost
+    """
+    edges = []
+    for from_vertex, neighbors in graph.items():
+        for to_vertex, cost in neighbors:
+            edges.append((from_vertex, to_vertex, cost))
+    edges.sort(key=itemgetter(2))
+
+    mst = defaultdict(list)
+    for from_vertex, to_vertex, weight in edges:
+        is_reachable = _is_reachable(mst, from_vertex, to_vertex)
+        if not is_reachable:
+            # since the graph is undirected, add both edges and later divide by 2 when computing min cost
+            mst[from_vertex].append((to_vertex, weight))
+            mst[to_vertex].append((from_vertex, weight))
+
+    min_cost = sum(cost for edges in mst.values() for _, cost in edges) / 2
+    return min_cost
+
+
+def _is_reachable(graph: Dict[int, List[Tuple[int, int]]], start: int, target: int) -> bool:
+    explored = set()
+    _dfs(graph, start, target, explored)
+    return target in explored
+
+
+def _dfs(graph, start, target, explored) -> None:
+    explored.add(start)
+    for to_vertex, _ in graph[start]:
+        if to_vertex not in explored:
+            _dfs(graph, to_vertex, target, explored)

@@ -1,5 +1,4 @@
 import unittest
-import pathlib
 from algorithms_mixtape.graphs.depth_first_search import dfs, recursive_dfs
 
 
@@ -16,9 +15,9 @@ class DepthFirstSearchTest(unittest.TestCase):
         }  # graph image: https://www.dropbox.com/s/xukwybssi59gza0/test-dag.png?raw=1
 
     def test_dfs(self):
-        self.assertEqual(["A", "G", "C", "F", "D", "E", "B"], dfs(self.graph, "A"))
+        self.assertEqual({"A", "G", "C", "F", "D", "E", "B"}, dfs(self.graph, "A"))
 
     def test_recursive_dfs(self):
         self.assertEqual(
-            ["A", "B", "C", "D", "E", "F", "G"], recursive_dfs(self.graph, "A")
+            {"A", "B", "C", "D", "E", "F", "G"}, recursive_dfs(self.graph, "A")
         )

@@ -1,5 +1,5 @@
 import unittest
-from algorithms_mixtape.insertion_sort.insertion_sort import insertion_sort
+from algorithms_mixtape.sorting.insertion_sort import insertion_sort
 
 
 class TestInsertionSort(unittest.TestCase):

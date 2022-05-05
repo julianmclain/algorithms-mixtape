@@ -1,42 +1,25 @@
-def dfs(graph: dict, start: str) -> list:
-    """Find all reachable vertices using DFS.
-
-    Parameters
-    ----------
-    graph : dict
-    start : str
-
-    Return
-    ------
-    list
-        The vertices reachable from 'start' in the order that they were seen.
+def dfs(graph: dict, start: str) -> set:
     """
-    visited = []
+    Find all reachable vertices using DFS
+    :return: vertices reachable from 'start'
+    """
+    visited = set()
     stack = [start]
     while stack:
         v = stack.pop()
         if v not in visited:
-            visited.append(v)
+            visited.add(v)
             for w in graph[v]:
                 stack.append(w)
     return visited
 
 
-def recursive_dfs(graph: dict, start: str, visited=[]) -> list:
+def recursive_dfs(graph: dict, start: str, visited=set()) -> set:
     """Recursively find all reachable vertices using DFS.
 
-    Parameters
-    ----------
-    graph : dict
-    start : str
-    visited : list
-
-    Return
-    ------
-    list
-        The vertices reachable from 'start' in the order that they were seen.
+    :return: The vertices reachable from 'start'
     """
-    visited.append(start)
+    visited.add(start)
     for neighbor in graph[start]:
         if neighbor not in visited:
             recursive_dfs(graph, neighbor, visited)
