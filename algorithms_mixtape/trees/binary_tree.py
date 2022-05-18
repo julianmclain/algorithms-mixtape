@@ -32,7 +32,7 @@ class BinarySearchTree(Generic[T]):
         return 1 # TODO
 
     @property
-    def is_root(self) -> "BinarySearchTree[T]":
+    def is_root(self) -> bool:
         """
         True if node is the root of the tree
         """
@@ -47,13 +47,6 @@ class BinarySearchTree(Generic[T]):
             return self.parent.root
         else:
             return self
-
-    @property
-    def is_root(self) -> bool:
-        """
-        True if node is the root
-        """
-        return not self.parent
 
     @property
     def is_left_child(self) -> bool:

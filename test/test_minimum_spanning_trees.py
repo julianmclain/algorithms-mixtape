@@ -4,7 +4,7 @@ from typing import Dict, List, Tuple
 from algorithms_mixtape.graphs.minimum_spanning_trees import prim_mst_naive, prim_mst, kruskal_mst_naive, kruskal_mst
 from algorithms_mixtape.heaps.heap import StandardLibHeap
 from algorithms_mixtape.union_finds.union_find import IntUnionFind, GeneralPurposeUnionFind
-from helpers import FIXTURE_DIRECTORY_PATH
+from .helpers import FIXTURE_DIRECTORY_PATH
 
 
 """

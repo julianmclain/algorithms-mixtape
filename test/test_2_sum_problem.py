@@ -1,6 +1,6 @@
 import unittest
 import bisect
-from helpers import FIXTURE_DIRECTORY_PATH
+from .helpers import FIXTURE_DIRECTORY_PATH
 
 
 def read_input():

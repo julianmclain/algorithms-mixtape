@@ -1,6 +1,6 @@
 import unittest
 from typing import List, Tuple
-from helpers import FIXTURE_DIRECTORY_PATH
+from .helpers import FIXTURE_DIRECTORY_PATH
 from algorithms_mixtape.scheduling.job_scheduling import greedy_diff, greedy_ratio
 
 

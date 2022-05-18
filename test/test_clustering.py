@@ -2,7 +2,7 @@ import unittest
 from typing import Dict, List, Tuple
 from collections import defaultdict
 
-from helpers import FIXTURE_DIRECTORY_PATH
+from .helpers import FIXTURE_DIRECTORY_PATH
 from algorithms_mixtape.graphs.clustering import kclustering
 
 
